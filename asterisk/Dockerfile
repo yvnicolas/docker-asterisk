@@ -9,6 +9,7 @@ MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 # Creates the user under which asterisk will run
 
 ENV ASTERISKUSER pbxrunner
+ENV ASTERISKVER 11.3.0
 
 RUN groupadd -r $ASTERISKUSER && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
 	&& mkdir /var/lib/asterisk && chown $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
@@ -31,7 +32,11 @@ RUN apt-get update && apt-get install -y uuid-dev build-essential libxml2-dev li
 # Getting the sources
 WORKDIR /tmp
 RUN mkdir src && cd src \
-	&& wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-11.3.0.tar.gz \
-	&& tar -xvzf asterisk-11.3.0.tar.gz
+	&& apt-get install -y wget \
+	&& wget http://downloads.asterisk.org/pub/telephony/asterisk/releases/asterisk-$ASTERISKVER.tar.gz \
+	&& tar -xvzf asterisk-$ASTERISKVER.tar.gz
+
+#installation
+RUN cd asterisk-$ASTERISKVER && ./configure && make && make install && make config
 
 

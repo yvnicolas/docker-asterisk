@@ -8,7 +8,11 @@ MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 
 # Creates the user under which asterisk will run
 
-RUN groupadd -r pbxrunner && useradd -r -g pbxrunner -m /var/lib/asterisk pbxrunner
+ENV ASTERISKUSER pbxrunner
+
+RUN groupadd -r $ASTERISKUSER && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
+	&& mkdir /var/lib/asterisk && chown $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
+	&& usermod --home /var/lib/asterisk $ASTERISKUSER
 
 # grab gosu for easy step-down from root
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* \

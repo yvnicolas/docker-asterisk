@@ -39,4 +39,15 @@ RUN mkdir src && cd src \
 #installation
 RUN cd asterisk-$ASTERISKVER && ./configure && make && make install && make config
 
+#Change ownership of asterisk files
+RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/spool/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/log/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/run/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /etc/asterisk
+ 
+
+#Make asterisk port open
+EXPOSE 5060
+
 

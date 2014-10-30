@@ -25,6 +25,9 @@ RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
 #Make asterisk port open
 EXPOSE 5060
 
-COPY entrypoint.sh /usr/local/sbin/
-RUN chmod ugo+x /usr/local/sbin/entrypoint.sh
-ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
+# the following lines provoke an exec error.
+# commented to avoid.
+# needs to to an asterisk start in the container
+#COPY entrypoint.sh /usr/local/sbin/
+#RUN chmod ugo+x /usr/local/sbin/entrypoint.sh
+#ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]

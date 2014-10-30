@@ -1,0 +1,25 @@
+# intermediate docker file to use for debugging the end command starting back from a working image
+
+# Enabling a ssh demon inside a docker container
+# derived from dockerizing and SSH daemon on http://docs.docker.com/examples/running_ssh_service
+
+
+FROM intermediate
+MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
+
+
+#installation
+RUN cd /tmp/src/asterisk-$ASTERISKVER && ./configure && make && make install && make config
+
+#Change ownership of asterisk files
+RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/spool/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/log/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/run/asterisk \
+	&& chown -R $ASTERISKUSER:$ASTERISKUSER /etc/asterisk
+ 
+
+#Make asterisk port open
+EXPOSE 5060
+
+

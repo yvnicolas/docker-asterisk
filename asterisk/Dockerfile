@@ -37,7 +37,7 @@ RUN mkdir src && cd src \
 	&& tar -xvzf asterisk-$ASTERISKVER.tar.gz
 
 #installation
-RUN cd asterisk-$ASTERISKVER && ./configure && make && make install && make config
+RUN cd /tmp/src/asterisk-$ASTERISKVER && ./configure && make && make install && make config
 
 #Change ownership of asterisk files
 RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \

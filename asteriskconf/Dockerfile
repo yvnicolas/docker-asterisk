@@ -25,9 +25,6 @@ RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
 #Make asterisk port open
 EXPOSE 5060
 
-#Start Asteriks
 COPY entrypoint.sh /usr/local/sbin/
 RUN chmod ugo+x /usr/local/sbin/entrypoint.sh
 ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
-
-

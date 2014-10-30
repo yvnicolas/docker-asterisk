@@ -1,6 +1,6 @@
 
-
 #
 # Lancer Asterisk
 cd /var/lib/asterisk
-gosu $ASTERISKUSER asterisk start
+#asterisk start
+/usr/sbin/sshd -D

@@ -42,7 +42,7 @@ RUN cd /tmp/src/asterisk-$ASTERISKVER && ./configure && make && make install && 
 #installation PHP et PHP AGI
 RUN apt-get install -y php5 php5-json \
 	&& cd /tmp && wget http://sourceforge.net/projects/phpagi/files/latest/download \
-	&& tar xvzf phpagi-2.20.tgz \
+	&& tar xvzf download \
 	&& mv phpagi-2.20/* /var/lib/asterisk/agi-bin/  \
  	&& chmod ugo+x /var/lib/asterisk/agi-bin/*.php
 

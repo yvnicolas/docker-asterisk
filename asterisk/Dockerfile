@@ -45,6 +45,13 @@ RUN apt-get install -y php5 php5-json \
 	&& tar xvzf download \
 	&& mv phpagi-2.20/* /var/lib/asterisk/agi-bin/  \
  	&& chmod ugo+x /var/lib/asterisk/agi-bin/*.php
+ 	
+ #necessary files and package for google tts
+ # sox - google tts agi - mpg 123
+ RUN apt-get install -y sox mpg123 libwww-perl  \
+ 	&& cd /tmp  && wget https://github.com/downloads/zaf/asterisk-googletts/asterisk-googletts-0.6.tar.gz \
+	&& tar xvzf asterisk-googletts-0.6.tar.gz \
+	&& cp asterisk-googletts-0.6/googletts.agi /var/lib/asterisk/agi-bin/
 
 #Change ownership of asterisk files
 RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \

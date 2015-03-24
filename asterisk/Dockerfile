@@ -9,7 +9,7 @@ MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 # Creates the user under which asterisk will run
 
 ENV ASTERISKUSER pbxrunner
-ENV ASTERISKVER 11.3.0
+ENV ASTERISKVER 13.2.0
 
 RUN groupadd -r $ASTERISKUSER && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
 	&& mkdir /var/lib/asterisk && chown $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/* \
 
 # installation of packets needed for installation
 RUN apt-get update && apt-get install -y uuid-dev build-essential libxml2-dev libncurses5-dev \
-					libsqlite3-dev libssl-dev
+					libsqlite3-dev libssl-dev libxslt-dev libjansson-dev
 
 
 # Getting the sources

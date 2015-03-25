@@ -5,6 +5,19 @@ My playground to dockerize asterisk configuration
 
 Work in progress
 
+## `asterisk` directory
+
+The main directory, should be self sustainable now. Other directories are kept for reference.
+
+to run the container :
+
+```
+docker run -d -p 5060:5060 yvnicolas/asterisk:13.2.0
+```
+
+
+## Old directories
+
 directory `sshdocker` contains a stand alone debian based container accessible via SSH
 
 To build an asterisk image that has just asterisk Compiled :

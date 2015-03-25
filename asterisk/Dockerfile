@@ -1,8 +1,7 @@
-# Enabling a ssh demon inside a docker container
-# derived from dockerizing and SSH daemon on http://docs.docker.com/examples/running_ssh_service
+# Asterisk image Docker file
+# No configuration files are created, but the directories are exposed as Volumes
 
-
-FROM yves_sshd:latest
+FROM debian:jessie
 MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 
 
@@ -60,8 +59,15 @@ RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/run/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /etc/asterisk
  
+#Expose outside volumes
+VOLUME /var/log/asterisk
+VOLUME /etc/asterisk
+
+#Copy minimum configuration files so that it can start
+COPY initconfigfiles/etc/* /etc/asterisk/
 
 #Make asterisk port open
 EXPOSE 5060
 
-
+#Start Asterisk in foreground
+CMD ["/usr/sbin/asterisk","-cvvvvvv"]

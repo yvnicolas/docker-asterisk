@@ -12,8 +12,12 @@ The main directory, should be self sustainable now. Other directories are kept f
 useful commands to manage the container :
 
 ```
-#run
-docker run --name asterisk -d -p 5060:5060 yvnicolas/asterisk:13.2.0
+#run with default configuration files
+docker run --name asterisk -d -p 5060:5060 yvnicolas/asterisk
+
+#run with conf file from the host
+docker run -v <path to conf file dir on host>:/etc/asterisk --name asterisk -d -p 5060:5060 yvnicolas/asterisk
+
 
 # get an asterisk console
 docker exec -ti asterisk asterisk -cvvvvvvvvr

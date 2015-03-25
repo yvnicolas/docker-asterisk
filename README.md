@@ -9,10 +9,18 @@ Work in progress
 
 The main directory, should be self sustainable now. Other directories are kept for reference.
 
-to run the container :
+useful commands to manage the container :
 
 ```
-docker run -d -p 5060:5060 yvnicolas/asterisk:13.2.0
+#run
+docker run --name asterisk -d -p 5060:5060 yvnicolas/asterisk:13.2.0
+
+# get an asterisk console
+docker exec -ti asterisk asterisk -cvvvvvvvvr
+
+# access to `/etc/asterisk` with view to your current host directory
+docker run -ti --rm --volumes-from asterisk -v $(pwd):/hostdir
+
 ```
 
 

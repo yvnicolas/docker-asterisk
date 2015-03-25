@@ -66,8 +66,12 @@ VOLUME /etc/asterisk
 #Copy minimum configuration files so that it can start
 COPY initconfigfiles/etc/* /etc/asterisk/
 
+COPY entrypoint.sh /entrypoint.sh
+
 #Make asterisk port open
 EXPOSE 5060
 
+WORKDIR /var/lib/asterisk
+
 #Start Asterisk in foreground
-CMD ["/usr/sbin/asterisk","-cvvvvvv"]
+ENTRYPOINT ["/entrypoint.sh"]

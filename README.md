@@ -32,6 +32,12 @@ Historically, 2 possibilities to allow mapping of Rtp ports without docker suppo
 It seems issue has [been addressed in docker](https://github.com/docker/docker/pull/8167)  
 Still needs to find out from which release 
 
+
+### Troubleshooting
+Instead of starting the container with a `-d` start it with `docker run -ti [...] yvnicolas/asterisk /bin/bash`  
+Start asterisk front in the container  
+`pbxrunner@876876: asterisk -cvvvvvvvv `
+
 ## Old directories
 
 directory `sshdocker` contains a stand alone debian based container accessible via SSH

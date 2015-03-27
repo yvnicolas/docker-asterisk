@@ -62,6 +62,7 @@ RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
 #Expose outside volumes
 VOLUME /var/log/asterisk
 VOLUME /etc/asterisk
+VOLUME /var/lib/asterisk
 
 #Copy minimum configuration files so that it can start
 COPY initconfigfiles/etc/* /etc/asterisk/

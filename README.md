@@ -9,6 +9,13 @@ Work in progress
 
 The main directory, should be self sustainable now. Other directories are kept for reference.
 
+Container exposes following volumes :  
+```
+/etc/asterisk
+/var/log/asterisk
+/var/lib/asterisk
+```
+
 ### useful commands to manage the container :
 
 ```

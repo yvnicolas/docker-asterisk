@@ -9,11 +9,11 @@ Work in progress
 
 The main directory, should be self sustainable now. Other directories are kept for reference.
 
-useful commands to manage the container :
+### useful commands to manage the container :
 
 ```
 #run with default configuration files
-docker run --name asterisk -d -p 5060:5060 yvnicolas/asterisk
+docker run --name asterisk -d -p 5060:5060 -p : <Add RTP ports opening> yvnicolas/asterisk
 
 #run with conf file from the host
 docker run -v <path to conf file dir on host>:/etc/asterisk --name asterisk -d -p 5060:5060 yvnicolas/asterisk
@@ -27,6 +27,10 @@ docker run -ti --rm --volumes-from asterisk -v $(pwd):/hostdir
 
 ```
 
+### RTP ports considerations
+Historically, 2 possibilities to allow mapping of Rtp ports without docker support of port range mapping : using `--net=host` or do an individual range mapping of `-p:port:port/udp` with creating correctly rtp.conf file. Used [Areski Belaid's docker asterisk post](http://areskibelaid.com/asterisk-on-docker/index.html) as background info on the subject.  
+It seems issue has [been addressed in docker](https://github.com/docker/docker/pull/8167)  
+Still needs to find out from which release 
 
 ## Old directories
 

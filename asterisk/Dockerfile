@@ -77,4 +77,4 @@ EXPOSE 5060
 WORKDIR /var/lib/asterisk
 USER $ASTERISKUSER
 #Start Asterisk in foreground
-CMD ["/usr/sbin/asterisk","-cvvvvvv"]
+CMD ["/usr/sbin/asterisk","-f"]

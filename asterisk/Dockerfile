@@ -36,10 +36,14 @@ RUN mkdir src && cd src \
 	&& tar -xvzf asterisk-$ASTERISKVER.tar.gz
 
 #installation asterisk
-RUN cd /tmp/src/asterisk-$ASTERISKVER && ./configure && make && make install && make config
+WORKDIR /tmp/src/asterisk-$ASTERISKVER
+RUN  ./configure
+RUN  cd menuselect && make menuselect && cd .. & make menuselect-tree
+RUN  menuselect/menuselect --disable BUILD_NATIVE menuselect/menuselect.makeopts 
+RUN  make && make install && make config
 
 #installation PHP et PHP AGI
-RUN apt-get install -y php5 php5-json \
+RUN apt-get update && apt-get install -y php5 php5-json \
 	&& cd /tmp && wget http://sourceforge.net/projects/phpagi/files/latest/download \
 	&& tar xvzf download \
 	&& mv phpagi-2.20/* /var/lib/asterisk/agi-bin/  \

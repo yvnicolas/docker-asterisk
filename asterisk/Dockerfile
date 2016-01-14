@@ -71,6 +71,6 @@ COPY initconfigfiles/etc/* /etc/asterisk/
 EXPOSE 5060
 
 WORKDIR /var/lib/asterisk
-USER $ASTERISKUSER
+#USER $ASTERISKUSER
 #Start Asterisk in foreground
 CMD ["/usr/sbin/asterisk","-cvvvvvv"]

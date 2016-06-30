@@ -1,7 +1,7 @@
 # Asterisk image Docker file
 # No configuration files are created, but the directories are exposed as Volumes
 
-FROM debian:jessie
+FROM ubuntu:16.04
 MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 
 
@@ -43,7 +43,7 @@ RUN  menuselect/menuselect --disable BUILD_NATIVE menuselect/menuselect.makeopts
 RUN  make && make install && make config
 
 #installation PHP et PHP AGI
-RUN apt-get update && apt-get install -y php5 php5-json \
+RUN apt-get update && apt-get install -y php5 php5-json php5-curl \
 	&& cd /tmp && wget http://sourceforge.net/projects/phpagi/files/latest/download \
 	&& tar xvzf download \
 	&& mv phpagi-2.20/* /var/lib/asterisk/agi-bin/  \

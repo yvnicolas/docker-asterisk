@@ -62,7 +62,11 @@ RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/log/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/run/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /etc/asterisk
- 
+
+
+# cleain tmp file
+RUN rm -rf /tmp/*
+
 #Expose outside volumes
 VOLUME /var/log/asterisk
 VOLUME /etc/asterisk

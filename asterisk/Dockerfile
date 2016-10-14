@@ -1,14 +1,14 @@
 # Asterisk image Docker file
 # No configuration files are created, but the directories are exposed as Volumes
 
-FROM ubuntu:16.04
+FROM debian:jessie
 MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 
 
 # Creates the user under which asterisk will run
 
 ENV ASTERISKUSER pbxrunner
-ENV ASTERISKVER 13.2.0
+ENV ASTERISKVER 13.9.1
 
 RUN groupadd -r $ASTERISKUSER && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
 	&& mkdir /var/lib/asterisk && chown $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \

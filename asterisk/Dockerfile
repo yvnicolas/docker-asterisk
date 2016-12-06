@@ -8,7 +8,7 @@ MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 # Creates the user under which asterisk will run
 
 ENV ASTERISKUSER pbxrunner
-ENV ASTERISKVER 13.9.1
+ENV ASTERISKVER 13.13.0
 
 RUN groupadd -r $ASTERISKUSER && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
 	&& mkdir /var/lib/asterisk && chown $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \

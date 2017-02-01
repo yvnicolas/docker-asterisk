@@ -2,7 +2,7 @@
 # derived from dockerizing and SSH daemon on http://docs.docker.com/examples/running_ssh_service
 
 
-FROM debian:latest
+FROM debian
 MAINTAINER Yves Nicolas <yves.nicolas@dynamease.com>
 
 RUN apt-get update && apt-get install -y openssh-server
